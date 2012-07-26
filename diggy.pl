@@ -595,6 +595,7 @@ sub get_myshow{
         my $send_to_sab = "$config{nzbmatrix_get_url}$id&username=$config{nzbmatrix_username}";
         $get = get("$sab_api_url$send_to_sab&cat=$category");
                if($get =~ m/ok/) {update_shows($show_id,$showname,$format_name)}
+               else{$get = "Failed sending to SabNZB. Is you configure setup correctly?"}
      }
     if($get eq "error:invalid_login"){$get = "No results. Incorrect NZBMatrix username or API. Have you set them up in your config?"}    
     if($get eq "error:nothing_found"){$get = "There was no download available for this show. This is normal if the show hasn't aired yet"}
