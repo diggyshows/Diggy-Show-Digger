@@ -17,10 +17,9 @@ What does it do?
 - Diggy connects to the internet and pulls down all the show/season/episode information to its local database
 - Configure each show and tell Diggy which seaons/episodes you have (or have not) watched
 - Digger it!
-- Diggy scan your database and build a list of shows you need, it will then search NZBMatrix and build a list of nzb files
+- Diggy scans your database and builds a list of shows you need, it will then search NZBMatrix and build a list of nzb files
 needed before sending this list to your local SabnNZBd server where it can download your shows
--Once you're configured add diggy to your crontab and forget about it
-        
+- Once you're configured add diggy to your crontab and forget about it
 
 
 Install details.
@@ -42,3 +41,15 @@ Failing that use CPAN (not recommmended)
 - cpan install LWP::Simple
 
 Windows: Not tested but may work!
+
+Usage:
+
+To run the application e.g. to set up the config, add/remove shows, build you database etc:
+
+- perl digger.pl
+
+This will present you with the interface where you can configure your setup
+- NOTE: On first run you will be prompted to setup your API/Server config.
+
+To run on a crontab edit the digger.pl file and change the $diggy_path at the top of the file to point to your base directory.
+The in your crontab run "digger.pl getshows". You can test this at the command line too.
