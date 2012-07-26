@@ -9,15 +9,9 @@ use DBI;
 ########  CHANGE THIS PATH TO POINT TO THE DIRECTORY OF THE DIGGY SCRIP ############################################################################################
 
 # example '/home/usr/diggy/' - YOU MUST INCLUDE THE LAST FORWARD SLASH!!!!!
-
 my $diggy_path = '';
 
-
-
 ########  DON'T CHANGE ANYTHING BELOW THIS LINE ####################################################################################################################
-
-
-
 
 my $os = $^O;
 my $clear_command;
@@ -593,7 +587,7 @@ sub get_myshow{
     my $apikey      = $config{nzbmatrix_apikey};
     my $category    = $config{sabnzb_catrgory};
     my $get         = get("$url$show&catid=$catid&num=$hits&larger=$larger&smaller=$smaller&username=$username&apikey=$apikey");
-         unless ($get eq "error:nothing_found")
+         unless ($get eq "error:nothing_found" || $get eq "error:invalid_login")
         {
         my @nzb         = split ("\n",$get);
                $nzb[0] =~ s/;//;
@@ -602,6 +596,7 @@ sub get_myshow{
         $get = get("$sab_api_url$send_to_sab&cat=$category");
                if($get =~ m/ok/) {update_shows($show_id,$showname,$format_name)}
      }
+    if($get eq "error:invalid_login"){$get = "No results. Incorrect NZBMatrix username or API. Have you set them up in your config?"}    
     if($get eq "error:nothing_found"){$get = "There was no download available for this show. This is normal if the show hasn't aired yet"}
     return $get;
 }

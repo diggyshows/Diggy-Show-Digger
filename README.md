@@ -31,11 +31,14 @@ DBD::SQLite
 JSON::XS
 
 For Debian / Ubuntu install from packages
-- sudo apt-get install libdbd-sqlite3
+- sudo apt-get install libdbd-sqlite3-perl
 - sudo apt-get install libjson-xs-perl
+- sudo apt-get install libwww-perl 
+- sudo apt-get install libcrypt-ssleay-perl
 
-Failing that (for other Distros, if not in package manager)
+Failing that use CPAN (not recommmended)
 - cpan install JSON::XS
 - cpan install DBD::SQLite
+- cpan install LWP::Simple
 
 Windows: Not tested but may work!
